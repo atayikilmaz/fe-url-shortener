@@ -1,4 +1,3 @@
-// Redirector.tsx
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -15,14 +14,12 @@ const Redirector: React.FC<RedirectorProps> = () => {
         if (!response.ok) {
           throw new Error('Failed to fetch long URL');
         }
-        const data = await response.text(); 
-        setLongUrl(data); 
+        const data = await response.text();
+        setLongUrl(data);
       } catch (error) {
         console.error('Error:', error);
-        
       }
     };
-
     fetchLongUrl();
   }, [shortenedUrlKey]);
 
@@ -32,7 +29,12 @@ const Redirector: React.FC<RedirectorProps> = () => {
     }
   }, [longUrl]);
 
-  return <div>Redirecting...</div>;
+  return (
+    <div className="flex justify-center items-center h-screen">
+      Redirecting...
+      <span className="loading loading-dots loading-lg text-4xl"></span>
+    </div>
+  );
 };
 
 export default Redirector;

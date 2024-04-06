@@ -102,7 +102,7 @@ const UrlCreator: React.FC<UrlCreatorProps> = () => {
                 rel="noopener noreferrer"
                 className="link link-hover text-yellow-500"
               >
-                {shortenedUrl}
+                pielyn.com/{shortenedUrl}
               </a>
             </div>
             <div className="flex-none">
