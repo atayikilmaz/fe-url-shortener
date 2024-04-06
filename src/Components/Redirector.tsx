@@ -33,7 +33,7 @@ const Redirector: React.FC<RedirectorProps> = () => {
     <div className="flex justify-center items-center h-screen">
             <span className="text-4xl">Redirecting</span>
  
-      <span className="loading loading-dots loading-lg text-4xl"></span>
+      <span className="loading loading-dots loading-lg text-4xl mx-1"></span>
     </div>
   );
 };

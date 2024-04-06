@@ -84,14 +84,14 @@ const UrlCreator: React.FC<UrlCreatorProps> = () => {
         {showAlert && (
           <div role="alert" className="alert shadow-lg mb-4 flex justify-between">
             <div>
-              <span className="">Shortened URL:</span>
+              <span className="">Shortened URL: </span>
               <a
                 href={shortenedUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="link link-hover text-yellow-500 ml-2"
               >
-                {shortenedUrl}
+                pielyn.com/{shortenedUrl}
               </a>
             </div>
             <div className="flex-none">
