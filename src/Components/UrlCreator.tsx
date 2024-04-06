@@ -52,7 +52,7 @@ const UrlCreator: React.FC<UrlCreatorProps> = () => {
       }
       const data = await response.text();
       // Assuming the response is a string
-      setShortenedUrl(`pielyn.com/${data}`);
+      setShortenedUrl(data);
       setShowAlert(true);
       setUrl(''); // Clear the input field
     } catch (error) {
