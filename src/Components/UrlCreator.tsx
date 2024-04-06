@@ -8,8 +8,6 @@ const UrlCreator: React.FC<UrlCreatorProps> = () => {
   const [showAlert, setShowAlert] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  
-
 
   const isValidUrl = (url: string): boolean => {
     try {
@@ -17,13 +15,10 @@ const UrlCreator: React.FC<UrlCreatorProps> = () => {
     } catch (_) {
       return false;
     }
-
     return true;
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
     e.preventDefault();
     setError('');
 
@@ -46,15 +41,15 @@ const UrlCreator: React.FC<UrlCreatorProps> = () => {
           method: 'POST',
         }
       );
+
       if (!response.ok) {
-        // Handle non-successful response (status code not in 200-299 range)
         throw new Error('Failed to create shortened URL');
       }
+
       const data = await response.text();
-      // Assuming the response is a string
       setShortenedUrl(data);
       setShowAlert(true);
-      setUrl(''); // Clear the input field
+      setUrl('');
     } catch (error) {
       console.error('Error:', error);
       setError('Failed to create shortened URL');
@@ -65,29 +60,23 @@ const UrlCreator: React.FC<UrlCreatorProps> = () => {
 
   const [isCopied, setIsCopied] = useState(false);
   const [buttonColor, setButtonColor] = useState('btn-ghost');
-  
+
   const handleCopy = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault(); // Prevent the default button click behavior
-  
+    e.preventDefault();
+
     try {
       await navigator.clipboard.writeText(shortenedUrl);
       setIsCopied(true);
-      setButtonColor('btn-success'); // Change button color to green
+      setButtonColor('btn-success');
       console.log('Shortened URL copied to clipboard');
       setTimeout(() => {
         setIsCopied(false);
-        setButtonColor('btn-ghost'); // Reset button color after a delay
-      }, 500); // Change the delay time as needed (1000ms = 1 second)
+        setButtonColor('btn-ghost');
+      }, 500);
     } catch (error) {
       console.error('Error copying shortened URL to clipboard:', error);
     }
   };
-
-
-
-
-
-
 
   return (
     <div className="flex justify-center items-center h-screen">
@@ -95,24 +84,24 @@ const UrlCreator: React.FC<UrlCreatorProps> = () => {
         {showAlert && (
           <div role="alert" className="alert shadow-lg mb-4 flex justify-between">
             <div>
-              <span className="">Shortened URL: </span>
+              <span className="">Shortened URL:</span>
               <a
                 href={shortenedUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="link link-hover text-yellow-500"
+                className="link link-hover text-yellow-500 ml-2"
               >
-                pielyn.com/{shortenedUrl}
+                {shortenedUrl}
               </a>
             </div>
             <div className="flex-none">
-            <button className={`btn btn-sm ${buttonColor}`} onClick={handleCopy}>
-              {isCopied ? 'Copied' : 'Copy'}
-            </button>
-          </div>
+              <button className={`btn btn-sm ${buttonColor}`} onClick={handleCopy}>
+                {isCopied ? 'Copied' : 'Copy'}
+              </button>
+            </div>
           </div>
         )}
-         <input
+        <input
           type="text"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
@@ -126,7 +115,6 @@ const UrlCreator: React.FC<UrlCreatorProps> = () => {
           )}
           <span className={`${isLoading ? 'ml-6' : ''}`}>Create Shortened Url</span>
         </button>
-        
       </form>
     </div>
   );
